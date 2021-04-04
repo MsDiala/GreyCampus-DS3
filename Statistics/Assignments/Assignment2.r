@@ -26,6 +26,9 @@ if (France > Croatia){
   print('Croatia wins')
 }
 
+# clear console
+cat("\014") #ctrl+L
+
 # Question 2: 
 # The mtcars data set has several factor variables.
 # However, R is reading them as numeric. 
@@ -42,12 +45,12 @@ for (i in 8:11){
 }
 str(mtcars)
 
+# clear console
+cat("\014") #ctrl+L
 
 # Question 3: 
 # Write a function to get the percentage of NAs in each column.
 sapply(mtcars, function(x) sum(is.na(x)))
-
-
 
 # Question 4:
 # Write a function to get the percentage of NAs in each row.
@@ -58,23 +61,36 @@ nas_row_percent = function(nas_row){
 }
 nas_row_percent()
 
-######################################
+# clear console
+cat("\014") #ctrl+L
+
+# This dataset is a subset of a real dataset.
 getwd()
 library(readxl)
-new_dataset = read_excel( "C:/Users/Diala/Downloads/Dataset - 2.1.xlsx")
+new_dataset <- read_excel( "C:/Users/Diala/Downloads/Dataset - 2.1.xlsx")
 str(new_dataset)
 dim(new_dataset)
-########################################
+View(new_dataset)
+
+# clear console
+cat("\014") #ctrl+L
+
 # Question 5: 
 #Write a function to get a summary of numeric columns (use the summary function) such as THC, CO, CO2, and so on in the data set.
 # With the same function, try to generate box plot using base R.
-library("dplyr")
-
+boxplot(new_dataset$THC)
+boxplot(new_dataset$CO)
+boxplot(new_dataset$CO2)
 
 # Question 6:
 # Write a function to create histograms of numeric columns, such as THC, CO, CO2, and so on in the data set. 
 #Use ggpot2 to generate figures.
+library(ggplot2)
+ggplot(new_dataset, aes(x=THC)) + geom_histogram()
+ggplot(new_dataset, aes(x=CO)) + geom_histogram()  
 
+# clear console
+cat("\014") #ctrl+L
 
 # Question 7: 
 # The data set contains date columns. 
@@ -82,12 +98,11 @@ library("dplyr")
 # The date should be dd/mm/yyyy in the final format. 
 # Use columns 2, 3, and 5 only.
 #C:\Users\Diala\Downloads
-##########################################################################3
+
 getwd()
 library(readr)
 data = read_csv("C:/Users/Diala/Downloads/Data set - 2.2.csv")
 str(data)
-###############################################################################3
 
 library(lubridate)
 
@@ -100,18 +115,20 @@ format(data$`Last FD Date`,"%d/%m/%y")
 data$`FD termination date` = mdy(data$`FD termination date`)
 format(data$`FD termination date`, "%d/%m/%y")
 
+# clear console
+cat("\014") #ctrl+L
 
 # Question 8: 
 # The date of birth column contains months in string format. 
 # Please create a tidy data column with months in numeric format. 
 # Now your data should be similar to the previous question.
-
-
 date_of_birth = dmy(data$`Date of Birth`, locale = 'english')
 date_of_birth = as.Date(date_of_birth, format= '%d/%m/%y')
 date_of_birth = as.Date(format(date_of_birth, '19%y%m%d'), '%Y%m%d')
 date_of_birth
 
+# clear console
+cat("\014") #ctrl+L
 
 # Question 9: 
 # Convert all dates into date format; they are currently in character variable format.
@@ -119,6 +136,8 @@ first_FD_date = as.Date(data$`First FD Date`)
 last_FD_date = as.Date(data$`Last FD Date`)
 FD_termination_date = as.Date(data$`FD termination date`)
 
+# clear console
+cat("\014") #ctrl+L
 
 # Question 10: 
 # Create a new column age based on the date of birth column and the first FD column. 
@@ -126,3 +145,6 @@ FD_termination_date = as.Date(data$`FD termination date`)
 
 age = (FD_termination_date - date_of_birth)/365
 age
+
+# clear console
+cat("\014") #ctrl+L
