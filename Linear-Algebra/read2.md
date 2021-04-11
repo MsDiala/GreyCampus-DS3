@@ -32,3 +32,6 @@
 
 
 link[https://machinelearningmastery.com/examples-of-linear-algebra-in-machine-learning/#:~:text=Last%20Updated%20on%20August%209,implementation%20of%20algorithms%20in%20code.]
+
+
+Diala Yazoury 
