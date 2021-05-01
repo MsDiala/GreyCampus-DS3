@@ -1,35 +1,35 @@
 
--- Q1 : // we are going to use inner join to 4 tables
-select first_name as manager_firstname ,last_name as manager_last_name ,  address , district , city ,country from public.store
-inner join public.staff
-on public.store.manager_staff_id = public.staff.store_id
-inner join public.address
-on public.staff.address_id = public.address.address_id
-inner join public.city
-on public.city.city_id = public.address.city_id
-inner join public.country
-on public.country.country_id = public.city.country_id ; 
+-- Q1 : // we are going to use INNER JOIN to 4 tables
+SELECT first_name AS manager_firstname ,lASt_name AS manager_lASt_name ,  address , district , city ,country from public.store
+INNER JOIN public.staff
+ON public.store.manager_staff_id = public.staff.store_id
+INNER JOIN public.address
+ON public.staff.address_id = public.address.address_id
+INNER JOIN public.city
+ON public.city.city_id = public.address.city_id
+INNER JOIN public.country
+ON public.country.country_id = public.city.country_id ; 
 
 -- Q2 : // 
-select store_id , inventory_id , title , rating , rental_rate , replacement_cost  from public.film
-inner join public.inventory
-on public.inventory.film_id = public.film.film_id;
+SELECT store_id , inventory_id , title , rating , rental_rate , replacement_cost  from public.film
+INNER JOIN public.inventory
+ON public.inventory.film_id = public.film.film_id;
 
 -- Q3 :// Avg inv
-select store_id ,rating, count(inventory_id) as inventory_items from public.film
-inner join public.inventory
-on public.inventory.film_id = public.film.film_id
-group by  rating , store_id  
-order by rating asc ;
+SELECT store_id ,rating, count(inventory_id) AS inventory_items FROM public.film
+INNER JOIN public.inventory
+ON public.inventory.film_id = public.film.film_id
+GROUP BY  rating , store_id  
+ORDER BY rating ASC ;
 -- Q4 : //???
 
 -- Q5 :
-select customer.first_name, customer.last_name, customer.store_id, customer.activebool, address.address, city.city, country.country from customer
-inner join address on customer.address_id=address.address_id
-inner join city on address.city_id=city.city_id
-inner join country on city.country_id=country.country_id;
+SELECT customer.first_name, customer.lASt_name, customer.store_id, customer.activebool, address.address, city.city, country.country from customer
+INNER JOIN address ON customer.address_id=address.address_id
+INNER JOIN city ON address.city_id=city.city_id
+INNER JOIN country ON city.country_id=country.country_id;
 -- Q6 :
-select customer.first_name, customer.last_name, count(payment.rental_id) as "total_rentals",sum(payment.amount) as "total_payment_amount" from customer
-inner join payment on customer.customer_id=payment.customer_id
-group by customer.customer_id
-order by sum(payment.amount) DESC
+SELECT customer.first_name, customer.lASt_name, count(payment.rental_id) AS "Total_Rentals",sum(payment.amount) AS "Total_Payment_Amount" from customer
+INNER JOIN payment ON customer.customer_id=payment.customer_id
+GROUP BY customer.customer_id
+ORDER BY sum(payment.amount) DESC
