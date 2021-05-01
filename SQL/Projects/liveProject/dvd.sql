@@ -11,14 +11,12 @@ inner join public.country
 on public.country.country_id = public.city.country_id ; 
 
 -- Q2 :
-select store_id , inventory_id , title , rating , rental_rate , replacement_cost 
-from public.film
+select store_id , inventory_id , title , rating , rental_rate , replacement_cost  from public.film
 inner join public.inventory
 on public.inventory.film_id = public.film.film_id;
 
 -- Q3 :
-select store_id ,rating, count(inventory_id) as inventory_items
-from public.film
+select store_id ,rating, count(inventory_id) as inventory_items from public.film
 inner join public.inventory
 on public.inventory.film_id = public.film.film_id
 group by  rating , store_id  
@@ -33,12 +31,9 @@ inner join address on customer.address_id=address.address_id
 inner join city on address.city_id=city.city_id
 inner join country on city.country_id=country.country_id;
 -- Q6 :
-select first_name, last_name,
-count(payment.rental_id) as total_rentals,
-sum(payment.amount) as total_payment_amount
+select customer.first_name, customer.last_name, count(payment.rental_id) as "total_rentals", 
+sum(payment.amount) as "total_payment_amount"
 from customer
-inner join rental
-on customer.customer_id = rental.customer_id
-inner join payment
-on customer.customer_id = payment.customer_id
-group by first_name, last_name
+inner join payment on customer.customer_id=payment.customer_id
+group by customer.customer_id
+order by sum(payment.amount) DESC
